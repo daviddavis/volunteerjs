@@ -3,8 +3,8 @@
  * Module dependencies.
  */
 
-var express  = require('express'),
-    mongoose = require('mongoose'),
+var express    = require('express'),
+    mongoose   = require('mongoose'),
     mongoStore = require('connect-mongodb');
 
 var app = module.exports = express.createServer();
@@ -31,9 +31,13 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
+db = mongoose.connect(app.set('db-uri'));
+
 // Routes
 
 app.get('/', function(req, res){
+  var Event = require('models/event.js');
+  new Event({title: "blah"}).save();
   res.render('index', {
     title: 'Express'
   });
