@@ -36,8 +36,8 @@ db = mongoose.connect(app.set('db-uri'));
 // Routes
 
 app.get('/', function(req, res){
-  var Event = require('models/event.js');
-  new Event({title: "blah"}).save();
+  //var Event = require('models/event.js');
+  //new Event({title: "blah"}).save();
   res.render('index', {
     title: 'Express'
   });
