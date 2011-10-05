@@ -45,8 +45,8 @@ app.get('/', function(req, res){
 
 app.get("/volunteers", function(req, res) {
   Volunteer.find({}, [], {sort: ['last_name', 'first_name', 'ascending'] }, function(err, records) {
-    records = records.map(function(d) {
-      return { first_name: d.first_name, last_name: d.last_name, id: d._id };
+    records = records.map(function(r) {
+      return { first_name: r.first_name, last_name: r.last_name, id: r._id };
     });
     res.send(records);
   });
@@ -57,6 +57,26 @@ app.post('/volunteers', function(req, res) {
   v.save(function() {
     console.log("Created volunteer");
     var data = v.toObject();
+    // TODO: Backbone requires 'id', but can I alias it?
+    data.id = data._id;
+    res.send(data);
+  });
+});
+
+app.get("/events", function(req, res) {
+  Event.find({}, [], {sort: ['date', 'ascending'] }, function(err, records) {
+    records = records.map(function(r) {
+      return { title: r.title, date: r.date, id: r._id };
+    });
+    res.send(records);
+  });
+});
+
+app.post('/events', function(req, res) {
+  var e = new Event(req.body);
+  e.save(function() {
+    console.log("Created event");
+    var data = e.toObject();
     // TODO: Backbone requires 'id', but can I alias it?
     data.id = data._id;
     res.send(data);

@@ -13,7 +13,10 @@ div#volunteer
 
 div#event
   div.content
-    p what
+    #event-list
+      !=partial('events/index')
+    #event-info
+      !=partial('events/form')
   
   div.bar
     a(href='/', id='show-events') volunteer events
