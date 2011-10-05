@@ -30,7 +30,7 @@ $(function() {
       Volunteers.fetch({success: function(collection, resp) {
         console.log(collection);
         collection.each(function(v) {
-          $('#volunteer-list').append("<div>" + v.attributes.first_name + " " + v.attributes.last_name + "</div>")
+          $('#volunteer-list').append("<div class='user'>" + v.attributes.first_name + " " + v.attributes.last_name + "</div>")
         });
       } });
     }
