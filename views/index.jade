@@ -6,9 +6,9 @@ div#volunteer
       !=partial('volunteers/form')
   
   div.bar 
-    a(href='/') volunteers
+    a(href='/', id='show-volunteers') volunteers
     div.separator &nbsp;
-    a(href='/')  new
+    a(href='/', id='show-volunteer-new')  new
 
 
 div#event
@@ -16,8 +16,8 @@ div#event
     p what
   
   div.bar
-    a(href='/') volunteer events
+    a(href='/', id='show-events') volunteer events
     div.separator &nbsp;
-    a(href='/') create a new event
+    a(href='/', id='show-event-new') create a new event
 
 div.clear

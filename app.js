@@ -44,7 +44,7 @@ app.get('/', function(req, res){
 });
 
 app.get("/volunteers", function(req, res) {
-  Volunteer.find({}, function(err, records) {
+  Volunteer.find({}, [], {sort: ['last_name', 'first_name', 'ascending'] }, function(err, records) {
     records = records.map(function(d) {
       return { first_name: d.first_name, last_name: d.last_name, id: d._id };
     });
