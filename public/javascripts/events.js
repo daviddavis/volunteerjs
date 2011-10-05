@@ -56,7 +56,8 @@ $(function() {
     events: {
       'submit form#event-form': 'save',
       'click a#show-events': 'showList',
-      'click a#show-event-new': 'showForm'
+      'click a#show-event-new': 'showForm',
+      'click button#cancel': 'clearForm'
     },
     
     initialize: function(model) {
@@ -76,6 +77,8 @@ $(function() {
       Events.create(params);
       this.showList();
       this.eventList.refresh();
+      this.clearForm();
+      window.volunteerView.refreshList();
     },
     
     showList: function(e) {
@@ -97,6 +100,13 @@ $(function() {
       volunteer_ids = $(this.el).find("form#event-form #volunteer_ids");
       separator = (volunteer_ids.val().length > 0) ? "," : ""
       volunteer_ids.val(volunteer_ids.val() + separator + volunteer.attr('id'));
+    },
+    
+    clearForm: function(e) {
+      if(e) e.preventDefault();
+      $(this.el).find("#event-form input").val("");
+      $(this.el).find("#assigned-volunteers").html("");
+      if(e) window.volunteerView.refreshList(); // refresh the volunteer list since we've emptied assigned-volunteers
     }
     
   });

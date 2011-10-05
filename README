@@ -1,6 +1,6 @@
 volunteer.js
 
-Dependencies
+Requirements
 ============
 
 Node 
@@ -8,7 +8,28 @@ NPM
 MongoDB
 
 
-How to run this
-===============
+Setup
+============
+
+npm -d install
+
+
+To Run App
+============
 
 node app.js
+
+
+Known Bugs / TODO
+==========
+
+- Time is shown in UTC and needs to be converted
+- Add datetime picker
+- Add validation
+- Allow users to edit volunteers and events
+- Create show screens for volunteers and events
+- Render js templates from backbone
+- Move all the form code out of VolunteerView and EventView and put it
+  into their own backbone views
+- Add more features
+- Add a testing framework plus tests

@@ -6,8 +6,9 @@ form(method='post', action='/events', id="event-form")
   label(for='date') date
   div.hint YYYY-MM-DD HH:MM
   input(type='text', name='date', id='date', class="datepicker")
-  h3(style="margin-bottom: 2px") Assigned Volunteers
+  label Assigned Volunteers
   div.hint drag volunteers here
   div(id="assigned-volunteers")
   br
   button Submit
+  button(id="cancel") Cancel

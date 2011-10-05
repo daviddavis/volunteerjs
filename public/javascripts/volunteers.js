@@ -62,8 +62,10 @@ $(function() {
       e.preventDefault();
       var params = $(e.currentTarget).serializeObject();
       Volunteers.create(params);
-      this.showList();
+      window.eventView.clearForm();
       this.volunteerList.refresh();
+      this.showList();
+      this.clearForm();
     },
     
     showList: function(e) {
@@ -76,7 +78,15 @@ $(function() {
       e.preventDefault();
       $("#volunteer-list").hide();
       $("#volunteer-info").show();
-    }
+    },
+    
+    refreshList: function() {
+      this.volunteerList.refresh();
+    },
+    
+    clearForm: function() {
+      $(this.el).find("form#volunteer-form input").val("");
+    },
     
   });
   

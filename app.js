@@ -54,8 +54,9 @@ app.get("/volunteers", function(req, res) {
 
 app.post('/volunteers', function(req, res) {
   var v = new Volunteer(req.body);
-  v.save(function() {
-    console.log("Created volunteer");
+  v.save(function(err) {
+    //console.log(err);
+    console.log("Created volunteer " + v._id);
     var data = v.toObject();
     // TODO: Backbone requires 'id', but can I alias it?
     data.id = data._id;
@@ -73,11 +74,13 @@ app.get("/events", function(req, res) {
 });
 
 app.post('/events', function(req, res) {
+  // sanitize the volunteer ids
   params = {title: req.body.title, date: req.body.date, volunteers: req.body.volunteers.split(",")}
-  console.log(params)
+  
   var e = new Event(params);
   e.save(function(err) {
     console.log(err);
+    console.log("Created event "+e._id);
     var data = e.toObject();
     // TODO: Backbone requires 'id', but can I alias it?
     data.id = data._id;
