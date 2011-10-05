@@ -66,16 +66,18 @@ app.post('/volunteers', function(req, res) {
 app.get("/events", function(req, res) {
   Event.find({}, [], {sort: ['date', 'ascending'] }, function(err, records) {
     records = records.map(function(r) {
-      return { title: r.title, date: r.date, id: r._id };
+      return { title: r.title, date: r.date, id: r._id, volunteer_count: r.volunteer_count, volunteer_ids: r.volunteers };
     });
     res.send(records);
   });
 });
 
 app.post('/events', function(req, res) {
-  var e = new Event(req.body);
-  e.save(function() {
-    console.log("Created event");
+  params = {title: req.body.title, date: req.body.date, volunteers: req.body.volunteers.split(",")}
+  console.log(params)
+  var e = new Event(params);
+  e.save(function(err) {
+    console.log(err);
     var data = e.toObject();
     // TODO: Backbone requires 'id', but can I alias it?
     data.id = data._id;

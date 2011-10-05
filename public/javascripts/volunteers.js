@@ -69,7 +69,7 @@ $(function() {
     showList: function(e) {
       if(e) e.preventDefault();
       $("#volunteer-list").show();
-      $("#volunteer-form").hide();
+      $("#volunteer-info").hide();
     },
     
     showForm: function(e) {

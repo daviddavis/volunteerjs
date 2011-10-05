@@ -10,10 +10,10 @@ $(function() {
     },
     
     prettyDate: function() {
-      if(this.get("date").length > 0)
+      if(this.get("date") && this.get("date").length > 0)
         return this.get("date").substr(0, 10) + " at " + this.get("date").substr(11, 5);
       else
-        return "--"
+        return null;
     }
   });
   
@@ -37,7 +37,9 @@ $(function() {
       Events.fetch({success: function(collection, resp) {
         //console.log(collection);
         collection.each(function(v) {
-          $('#event-list').append("<div class='event'>" + v.get("title") + " on " + v.prettyDate() + "</div>")
+          date = v.prettyDate() ? (" on " + v.prettyDate()) : "";
+          volunteer_count = " (" + v.get("volunteer_count") + " volunteers)";
+          $('#event-list').append("<div class='event'>" + v.get("title") + date + volunteer_count + "</div>")
         });
       } });
     },
@@ -93,7 +95,8 @@ $(function() {
       $("#assigned-volunteers").append(volunteer);
 
       volunteer_ids = $(this.el).find("form#event-form #volunteer_ids");
-      volunteer_ids.val(volunteer_ids.val() + volunteer.attr('id') + ",");
+      separator = (volunteer_ids.val().length > 0) ? "," : ""
+      volunteer_ids.val(volunteer_ids.val() + separator + volunteer.attr('id'));
     }
     
   });
