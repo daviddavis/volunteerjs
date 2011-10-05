@@ -79,7 +79,7 @@ app.post('/events', function(req, res) {
   
   var e = new Event(params);
   e.save(function(err) {
-    console.log(err);
+    //console.log(err);
     console.log("Created event "+e._id);
     var data = e.toObject();
     // TODO: Backbone requires 'id', but can I alias it?

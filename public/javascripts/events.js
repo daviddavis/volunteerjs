@@ -38,7 +38,8 @@ $(function() {
         //console.log(collection);
         collection.each(function(v) {
           date = v.prettyDate() ? (" on " + v.prettyDate()) : "";
-          volunteer_count = " (" + v.get("volunteer_count") + " volunteers)";
+          volunteer_word = v.get("volunteer_count") == 1 ? "volunteer" : "volunteers"
+          volunteer_count = " (" + v.get("volunteer_count") + " " + volunteer_word + ")";
           $('#event-list').append("<div class='event'>" + v.get("title") + date + volunteer_count + "</div>")
         });
       } });
