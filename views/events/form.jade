@@ -1,9 +1,13 @@
 form(method='post', action='/events', id="event-form")
+  input(type='text', name='volunteer_ids', id="volunteer_ids")
   h2 New Event
   label(for='title') title
   input(type='text', name='title', id='title')
   label(for='date') date
+  div.hint YYYY-MM-DD HH:MM
   input(type='text', name='date', id='date', class="datepicker")
-  br
+  h3(style="margin-bottom: 2px") Assigned Volunteers
+  div.hint drag volunteers here
+  div(id="assigned-volunteers")
   br
   button Submit

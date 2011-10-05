@@ -61,6 +61,11 @@ $(function() {
       $(this.el).find("#event-info").hide();
       this.eventList = new EventList();
       this.eventList.render();
+      $(this.el).find("#event-form").droppable({
+        drop: function(event, ui) {
+          window.eventView.addVolunteer(event, ui);
+        }
+      });
     },
     
     save: function(e) {
@@ -81,6 +86,14 @@ $(function() {
       e.preventDefault();
       $("#event-list").hide();
       $("#event-info").show();
+    },
+    
+    addVolunteer: function(e, ui) {
+      volunteer = ui.draggable;
+      $("#assigned-volunteers").append(volunteer);
+
+      volunteer_ids = $(this.el).find("form#event-form #volunteer_ids");
+      volunteer_ids.val(volunteer_ids.val() + volunteer.attr('id') + ",");
     }
     
   });

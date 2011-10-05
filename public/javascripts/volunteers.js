@@ -30,15 +30,17 @@ $(function() {
       Volunteers.fetch({success: function(collection, resp) {
         //console.log(collection);
         collection.each(function(v) {
-          $('#volunteer-list').append("<div class='user'>" + v.attributes.first_name + " " + v.attributes.last_name + "</div>")
+          $('#volunteer-list').append("<div class='user' id='" + v.get("id") + "'>" + v.get("first_name") + " " + v.get("last_name") + "</div>")
         });
+        
+        $("div.user").draggable({ containment: "#main", scroll: false, appendTo: "#main", zIndex:10000, helper: "clone"});
       } });
     },
     
     refresh: function() {
       $(this.el).html(""); // clear it out
       this.render();
-    }
+    },
   });
   
   window.VolunteerView = Backbone.View.extend({
