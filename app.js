@@ -5,7 +5,6 @@
 
 var express    = require('express'),
     mongoose   = require('mongoose'),
-    mongoStore = require('connect-mongodb'),
     stylus = require('stylus');
 
 var app = module.exports = express.createServer();
@@ -20,7 +19,6 @@ app.configure(function(){
   app.use(app.router);
   app.use(stylus.middleware({ src: __dirname + '/public' }));
   app.use(express.static(__dirname + '/public'));
-  app.use(express.session({ store: mongoStore(app.set('db-uri')), secret: 'topsecret' }));
 });
 
 app.configure('development', function(){
@@ -34,14 +32,34 @@ app.configure('production', function(){
 });
 
 db = mongoose.connect(app.set('db-uri'));
+var Event = require('models/event.js');
+var Volunteer = require('models/volunteer.js');
 
 // Routes
 
 app.get('/', function(req, res){
-  //var Event = require('models/event.js');
-  //new Event({title: "blah"}).save();
   res.render('index', {
-    title: 'Express'
+    title: 'volunteer.js'
+  });
+});
+
+app.post('/volunteers.:format?', function(req, res) {
+  var v = new Volunteer(req.body);
+  v.save(function() {
+    switch (req.params.format) {
+      case 'json':
+        console.log("Created volunteer. Returning json.");
+        var data = v.toObject();
+        // TODO: Backbone requires 'id', but can I alias it?
+        data.id = data._id;
+        res.send(data);
+      break;
+
+      default:
+        console.log("Created volunteer. Redirecting.");
+        //req.flash('info', 'Volunteer created');
+        res.redirect('/');
+    }
   });
 });
 
