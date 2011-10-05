@@ -43,23 +43,23 @@ app.get('/', function(req, res){
   });
 });
 
-app.post('/volunteers.:format?', function(req, res) {
+app.get("/volunteers", function(req, res) {
+  Volunteer.find({}, function(err, records) {
+    records = records.map(function(d) {
+      return { first_name: d.first_name, last_name: d.last_name, id: d._id };
+    });
+    res.send(records);
+  });
+});
+
+app.post('/volunteers', function(req, res) {
   var v = new Volunteer(req.body);
   v.save(function() {
-    switch (req.params.format) {
-      case 'json':
-        console.log("Created volunteer. Returning json.");
-        var data = v.toObject();
-        // TODO: Backbone requires 'id', but can I alias it?
-        data.id = data._id;
-        res.send(data);
-      break;
-
-      default:
-        console.log("Created volunteer. Redirecting.");
-        //req.flash('info', 'Volunteer created');
-        res.redirect('/');
-    }
+    console.log("Created volunteer");
+    var data = v.toObject();
+    // TODO: Backbone requires 'id', but can I alias it?
+    data.id = data._id;
+    res.send(data);
   });
 });
 

@@ -6,16 +6,35 @@ $(function() {
     },
 
     urlWithFormat: function(format) {
-      return this.get('id') ? '/volunteers/' + this.get('id') + '.' + format : '/volunteers.json';
+      return this.get('id') ? '/volunteers/' + this.get('id') + '.' + format : '/volunteers';
     }
   });
   
-  VolunteerList = Backbone.Collection.extend({
+  VolunteerCollection = Backbone.Collection.extend({
     model: Volunteer,
-    url: '/volunteers.json'
+    url: '/volunteers'
   });
 
-  window.Volunteers = new VolunteerList;
+  window.Volunteers = new VolunteerCollection;
+  
+  window.VolunteerList = Backbone.View.extend({
+    el: $('#volunteer-list'),
+    Collection: Volunteers,
+    
+    initialize: function() {
+      _.bindAll(this, 'render');
+      //this.render();
+    },
+    
+    render: function() {
+      Volunteers.fetch({success: function(collection, resp) {
+        console.log(collection);
+        collection.each(function(v) {
+          $('#volunteer-list').append("<div>" + v.attributes.first_name + " " + v.attributes.last_name + "</div>")
+        });
+      } });
+    }
+  });
   
   window.VolunteerView = Backbone.View.extend({
     el: $('#volunteer'),
@@ -25,7 +44,9 @@ $(function() {
     },
     
     initialize: function(model) {
-      // render
+      $("#volunteer-info").hide();
+      this.volunteerList = new VolunteerList();
+      this.volunteerList.render();
     },
     
     save: function(e) {
