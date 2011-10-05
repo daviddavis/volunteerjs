@@ -1,0 +1,3 @@
+$(function() {
+  $('#volunteer-form').hide();
+});

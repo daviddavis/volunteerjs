@@ -1,20 +1,21 @@
 div#volunteer
   div.content
-    p
-      label what
+    #volunteer-info
+      !=partial('volunteers/form')
   
   div.bar 
-    a volunteers
+    a(href='/') volunteers
     div.separator &nbsp;
-    a new
+    a(href='/')  new
+
 
 div#event
   div.content
     p what
   
   div.bar
-    a volunteer events
+    a(href='/') volunteer events
     div.separator &nbsp;
-    a create a new volunteer event
+    a(href='/') create a new event
 
 div.clear

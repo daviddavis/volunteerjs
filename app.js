@@ -5,7 +5,8 @@
 
 var express    = require('express'),
     mongoose   = require('mongoose'),
-    mongoStore = require('connect-mongodb');
+    mongoStore = require('connect-mongodb'),
+    stylus = require('stylus');
 
 var app = module.exports = express.createServer();
 
@@ -17,6 +18,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
+  app.use(stylus.middleware({ src: __dirname + '/public' }));
   app.use(express.static(__dirname + '/public'));
   app.use(express.session({ store: mongoStore(app.set('db-uri')), secret: 'topsecret' }));
 });

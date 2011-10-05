@@ -1,62 +1,71 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
-
 label {
-  color: #ABABAB;
+  color: #ababab;
   text-transform: uppercase;
   text-shadow: 1px 1px 0 #eee;
   font-size: 1.1em;
+  display: block;
+  margin-top: 10px;
+}
+input[type="text"],
+button {
+  font-size: 1.2em;
+  background: #fff;
+  border: 1px solid #aaa;
+  color: #666;
+  padding: 2px 4px;
 }
 .clear {
   clear: both;
   float: none;
 }
-
 #header h1 {
   font-size: 3em;
   margin: 10px 0;
 }
-
 div#container {
   width: 950px;
   margin: 0 auto;
 }
-
+div#footer {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+}
 div#main {
-  border: 1px solid #BBB;
-  background: url('/images/noise.png') #F6F6F6;
+  border: 1px solid #bbb;
+  background: url("/images/noise.png") #f6f6f6;
+  -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
   overflow: hidden;
+  color: #666;
 }
-
 div#volunteer {
-  border-right: 1px solid #BBB;
+  border-right: 1px solid #bbb;
   width: 300px;
   float: left;
   position: relative;
   height: 500px;
 }
-
 div#event {
   float: left;
   width: 647px;
   position: relative;
   height: 500px;
 }
-
 div.content {
   overflow-y: scroll;
-  padding: 2px 10px;
+  padding: 10px 10px;
 }
-
 div.bar {
-  background: url('/images/noise.png') #dedede;
+  background: url("/images/noise.png") #dedede;
   border-top: 1px solid #aaa;
   position: absolute;
   bottom: 0;
@@ -64,18 +73,18 @@ div.bar {
   width: 100%;
   margin-top: 10px;
   overflow: hidden;
-  padding: 0 0;
+  padding: 2px 0;
 }
-
 div.bar a {
   color: #454545;
   text-shadow: 1px 1px 0 #eee;
   margin: 3px 20px 0;
-  font-size: 1.3em;
+  font-size: 1.6em;
   display: block;
   float: left;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
+  text-decoration: none;
 }
 div.bar a:active {
   color: #000;
@@ -84,7 +93,7 @@ div.bar a:hover {
   color: #000;
 }
 div.bar div.separator {
-  background: url('/images/arrow_right.png') no-repeat;
+  background: url("/images/arrow_right.png") no-repeat;
   float: left;
   width: 30px;
   height: 26px;
@@ -92,13 +101,11 @@ div.bar div.separator {
 div#event div.bar a {
   letter-spacing: 1.2px;
 }
-
 div#volunteer div.bar {
   -moz-border-radius-bottom-left: 10px;
   border-bottom-left-radius: 10px;
   left: 0;
 }
-
 div#event div.bar {
   -moz-border-radius-bottom-left: 0px;
   border-bottom-left-radius: 0px;
