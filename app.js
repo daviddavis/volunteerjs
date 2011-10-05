@@ -3,7 +3,9 @@
  * Module dependencies.
  */
 
-var express = require('express');
+var express  = require('express'),
+    mongoose = require('mongoose'),
+    mongoStore = require('connect-mongodb');
 
 var app = module.exports = express.createServer();
 
@@ -16,13 +18,16 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(express.session({ store: mongoStore(app.set('db-uri')), secret: 'topsecret' }));
 });
 
 app.configure('development', function(){
+  app.set('db-uri', 'mongodb://localhost/volunteerjs-development');
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
+  app.set('db-uri', 'mongodb://localhost/volunteerjs-production');
   app.use(express.errorHandler()); 
 });
 

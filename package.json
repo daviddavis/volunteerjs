@@ -1,9 +1,11 @@
 {
-    "name": "application-name"
+    "name": "volunteer.js"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.4.6"
-    , "jade": ">= 0.0.1"
+      "express" : "2.4.6"
+    , "jade"    : "0.16.2"
+    , "mongoose": "2.3.0"
+    , "connect-mongodb": "1.0.0"
   }
 }
