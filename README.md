@@ -1,4 +1,5 @@
-= volunteer.js
+volunteer.js
+============
 
 Requirements
 ------------
@@ -7,21 +8,18 @@ Node
 NPM
 MongoDB
 
-
 Setup
 ------------
 
 npm -d install
-
 
 To Run App
 ------------
 
 node app.js
 
-
 TODO
-------------
+============
 
 - Time is shown in UTC and needs to be converted
 - Add datetime picker
