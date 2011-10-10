@@ -3,20 +3,17 @@ volunteer.js
 
 Requirements
 ------------
-
-Node 
-NPM
-MongoDB
+- Node 
+- NPM
+- MongoDB
 
 Setup
 ------------
-
-npm -d install
+    npm -d install
 
 To Run App
 ------------
-
-node app.js
+    node app.js
 
 TODO
 ============
